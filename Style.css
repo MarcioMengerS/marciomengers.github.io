@@ -1,0 +1,169 @@
+/* Esse código é só para tirar as margens */
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  /* O elemento precisa ter uma altura definida para o efeito
+  funcionar.
+     100vh significa 100% da altura da view.
+  */
+  height: 100vh;
+
+  /* O tamanho das imagens irá criar uma barra de rolagem 
+  horizontal. Iremos desativar isso */
+  overflow-x: hidden;
+
+  /* A propriedade perspective indica a "distância" entre o 
+  usuário e o plano Z.
+  Quanto maior o valor, mais perto o elemento estará do usuário.
+  Se for um valor negativo,
+  mais distante esse elemento estará.
+  */
+  perspective: 2px;
+
+  /* O transform-style indica se os elementos filhos devem ser 
+  transformados em um plano 2D ou 3D.
+  O valor preserve-3d indica que os elementos devem seguir o 
+  espaço 3D indicado.
+  */
+  transform-style: preserve-3d;
+}
+
+
+
+.section {
+  /* Indicamos "relative" para depois podermos
+  posicionar os elementos filhos com "absolute" */
+  position: relative;
+
+  /* Indicamos uma altura para a nossa seção. O valor não 
+  importa muito.
+  Para garantir um bom efeito, coloquei também uma altura 
+  mínima de 700px;
+  */
+  height: 100vh;
+  min-height: 700px;
+
+  /* Para manter a transformação em espaço 3D, indicamos o mesmo 
+  valor do elemento pai (preserve-3d).
+  Para não precisar repetir o valor "preserve-3d", você pode usar 
+  o valor "inherit", que fará
+  com que ele pegue o valor do elemento pai.
+  */
+  transform-style: inherit;
+}
+
+.section::before {
+  /* Aqui nós iremos configurar a imagem que irá aparecer no fundo
+  da seção.
+  Como vimos, o Parallax precisa de elementos diferentes, então 
+  não daria certo se colocássemos o fundo diretamente na 
+  <section>. Então criaremos um pseudo-elemento para isso.
+  */
+
+  /* Isso servirá para que o pseudo-elemento possua as mesmas
+  dimensões do elemento <section> */
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* O z-index negativo irá garantir que a imagem não fique por 
+  cima de outros elementos */
+  z-index: -1;
+
+  /* Aqui estamos fazendo com que a imagem de fundo cubra todo o
+  elemento */
+  background-size: cover;
+  background-repeat: no-repeat;
+  <--no-repeat-->background-position: center center;
+
+
+
+  /* Aqui está a brincadeira. Lembra que o nosso "wrapper" está
+  mais próximo do usuário?
+  Aqui nós faremos com que o nosso pseudo-elemento, que está com
+  a imagem de fundo, fique mais longe do usuário. Para isso, 
+  basta passar um valor negativo para "translateZ()".
+  
+  Como a imagem irá para longe do usuário, ela parecerá menor. 
+  Então usamos o "scale()" para aumentar o tamanho da imagem.
+  
+  Como o elemento estará mais longe do usuário, ele irá se mover
+  mais lentamente do que os elementos mais próximos conforme 
+  a gente role a página.
+  */
+  transform: translateZ(-1px) scale(1.5);
+}
+
+.text {
+  /* Essa classe, como dito antes, é só para o nosso conteúdo.
+  Sinta-se livre para criar o que quiser.
+  */
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  padding: 20px 0;
+  background-image: -webkit-linear-gradient(blue, #fafafa);
+
+  color: #fafafa;
+  text-shadow: 0 0 5px rgb(17, 17, 5);
+  font-size: 20px;
+  text-align: center;
+}
+
+
+
+/* Em nosso pseudo-elemento, configuramos a imagem de fundo,
+mas não indicamos qual será a imagem.
+  Isso nos permite poder criar outras classes para indicar 
+  uma imagem diferente para cada <section>.
+*/
+.bg1::before {
+  background-image: url(./images/terra.jpg);
+}
+
+.bg2::before {
+  background-image: url(./images/nasa.jpg);
+}
+
+.bg3::before {
+  background-image: url(./images/6yuYHKv.jpg);
+}
+
+.bg4::before {
+  background-image: url(./images/criatividade.jpg);
+}
+
+.bg5::before {
+  background-image: url(./images/DeltaHalo.jpg);
+}
+
+.bg6::before {
+  background-image: url(./images/apple.jpg);
+}
+
+.bg7::before {
+  background-image: url(./images/bin.jpg);
+}
+
+.bg8::before {
+  background-image: url(./images/nasa.jpg);
+}
+
+.bg9::before {
+  background-image: url(./images/terra.jpg);
+}
+
+.bg10::before {
+  background-image: url(./images/6yuYHKv.jpg);
+}
+
+.bg11::before {
+  background-image: url(./images/group.jpg);
+}
